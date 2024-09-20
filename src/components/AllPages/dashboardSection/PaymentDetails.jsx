@@ -9,11 +9,17 @@ function PaymentDetails({
   paymentDebitOrCredit,
   paymentType,
   paymentAmountClass,
+  themeValue,
+  setThemeValue,
 }) {
   return (
     <div className="flex h-11 justify-between items-center w-full">
       <div className="flex gap-5 items-center justify-center">
-        <div className="hartImg py-2 px-2 rounded-md bg-[#333333] text-[1.7rem]">
+        <div
+          className={`hartImg py-2 px-2 rounded-md bg- text-[1.7rem] ${
+            themeValue === true ? "bg-[#FFD9D5] text-black" : "bg-[#FFD9D5] text-black"
+          }`}
+        >
           {icon}
         </div>
         <div className=" w-44">

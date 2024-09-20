@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppLayout from "./components/AppLayout";
 import Dashboard from "./components/AllPages/dashboardSection/Dashboard";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -9,14 +9,15 @@ import Subscription from "./components/AllPages/subscriptionSection/Subscription
 import Settings from "./components/AllPages/settingsSection/Settings";
 
 function App() {
+  const [themeValue, setThemeValue] = useState(false);
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <AppLayout />,
+      element: <AppLayout themeValue={themeValue} setThemeValue={setThemeValue}/>,
       children: [
         {
           path: "/",
-          element: <Dashboard />,
+          element: <Dashboard themeValue={themeValue} setThemeValue={setThemeValue} />,
         },
         {
           path:"/transactions",

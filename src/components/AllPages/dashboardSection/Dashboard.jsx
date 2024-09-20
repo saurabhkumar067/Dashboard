@@ -4,7 +4,7 @@ import PaymentDetails from "./PaymentDetails";
 import { FaUser } from "react-icons/fa";
 import UserImage from "../../../assets/user-image.webp";
 
-function Dashboard() {
+function Dashboard({themeValue, setThemeValue}) {
   const userPaymentDetails = [
     {
       icon: <FaUser />,
@@ -56,7 +56,7 @@ function Dashboard() {
     <section>
       <div className=" pt-3 h-full">
         <h1 className="text-3xl font-bold my-3 mb-4">Dashboard</h1>
-        <div className="flex bg-[#252525] justify-between items-center h-20 rounded-2xl pr-4">
+        <div className={`flex bg-[#252525] justify-between items-center h-20 rounded-2xl pr-4 ${themeValue===true?"bg-[#FFFFFF]":""}`}>
           <h3 className=" text-[1.3rem] w-60 text-center font-semibold">
             Income & Spending (Today)
           </h3>
@@ -68,17 +68,17 @@ function Dashboard() {
           </div>
           <div className=" cursor-pointer">
             <PiDotsThreeOutlineFill
-              style={{ color: "white", fontSize: "2rem" }}
+              className={`text-[2rem] ${themeValue===true?"text-black":"text-white"}`}
             />
           </div>
         </div>
 
-        <div className=" bg-[#252525] mt-3 pb-3 px-10 rounded-2xl">
+        <div className={` bg-[#252525] mt-3 pb-3 px-10 rounded-2xl ${themeValue===true?"bg-[#FFFFFF]":""}`}>
           <div className="flex items-center justify-between w-full">
             <h1 className="text-2xl font-bold mt-2 ">Transactions</h1>
             <div className=" cursor-pointer">
               <PiDotsThreeOutlineFill
-                style={{ color: "white", fontSize: "2rem" }}
+                className={`text-[2rem] ${themeValue===true?"text-black":"text-white"}`}
               />
             </div>
           </div>
@@ -92,6 +92,7 @@ function Dashboard() {
                 paymentStatus,
                 paymentDebitOrCredit,
                 paymentType,
+                themeValue, setThemeValue
               } = item;
               const convertNumber = paymentAmount.split("");
               // console.log(convertNumber);
@@ -105,6 +106,7 @@ function Dashboard() {
                   paymentStatus={paymentStatus}
                   paymentDebitOrCredit={paymentDebitOrCredit}
                   paymentType={paymentType}
+                  themeValue={themeValue} setThemeValue={setThemeValue}
                   paymentAmountClass={
                     convertNumber[0] == "+"
                       ? "text-[#029650]"
@@ -116,7 +118,7 @@ function Dashboard() {
           </div>
         </div>
 
-        <div className=" bg-[#252525] mt-3 px-10 rounded-2xl">
+        <div className={`  mt-3 px-10 rounded-2xl ${themeValue===true?"bg-[#FFFFFF]":"bg-[#252525]"}`}>
           <div className="flex items-center justify-between w-full">
             <h1 className="text-2xl font-bold mt-2 ">Recent Accounts</h1>
             <div className=" cursor-pointer">
@@ -131,7 +133,7 @@ function Dashboard() {
               return (
                 <li  key={index} className="">
                   <img src={img} className="rounded-full w-20" alt="" />
-                  <p className="text-center text-gray-400">{userName}</p>
+                  <p className="text-center text-gray-400 pb-[3px]">{userName}</p>
                 </li>
               );
             })}
